@@ -7,11 +7,11 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //var controller = Get.find<MainStatusController>();
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return BodyWrap(
       child: Scaffold(
-        key: _scaffoldKey,
+        key: scaffoldKey,
         backgroundColor: Colors.transparent,
         body: Padding(
           padding: const EdgeInsets.all(5.0),

@@ -19,7 +19,7 @@ class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
-  _SplashPageState createState() => _SplashPageState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage>
@@ -50,9 +50,7 @@ class _SplashPageState extends State<SplashPage>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(
-          milliseconds:
-              1000), // TODO > после завершения работ, вернуть значение 5000
+      duration: const Duration(milliseconds: 5000),
     );
     _opacity1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(

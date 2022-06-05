@@ -6,11 +6,12 @@ import 'package:nsg_data/nsg_data.dart';
 import 'login_params.dart';
 
 class LoginPage extends NsgPhoneLoginPage {
-  LoginPage(NsgDataProvider provider) : super(provider, widgetParams: LoginPage.getWidgetParams());
+  LoginPage(NsgDataProvider provider)
+      : super(provider, widgetParams: LoginPage.getWidgetParams());
 
   @override
   Widget getLogo() {
-    const List<String> _images = <String>[
+    const List<String> images = <String>[
       'lib/ssets/images/sv1.svg',
       'lib/assets/images/sv2.svg',
       'lib/assets/images/sv3.svg',
@@ -24,11 +25,19 @@ class LoginPage extends NsgPhoneLoginPage {
               scale: 2,
               child: Stack(
                 children: [
-                  SvgPicture.asset(_images[0]),
-                  Transform.translate(offset: const Offset(13.5, 26), child: SvgPicture.asset(_images[1])),
-                  Transform.translate(offset: const Offset(10, 10), child: SvgPicture.asset(_images[2])),
-                  Transform.translate(offset: const Offset(37, 0), child: SvgPicture.asset(_images[3])),
-                  Transform.translate(offset: const Offset(0, 80), child: SvgPicture.asset(_images[4]))
+                  SvgPicture.asset(images[0]),
+                  Transform.translate(
+                      offset: const Offset(13.5, 26),
+                      child: SvgPicture.asset(images[1])),
+                  Transform.translate(
+                      offset: const Offset(10, 10),
+                      child: SvgPicture.asset(images[2])),
+                  Transform.translate(
+                      offset: const Offset(37, 0),
+                      child: SvgPicture.asset(images[3])),
+                  Transform.translate(
+                      offset: const Offset(0, 80),
+                      child: SvgPicture.asset(images[4]))
                 ],
               ),
             )));

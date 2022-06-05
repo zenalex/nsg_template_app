@@ -265,7 +265,7 @@ packages:
       path: "../nsg_data"
       relative: true
     source: path
-    version: "0.1.0"
+    version: "0.0.5"
   path:
     dependency: transitive
     description:
