@@ -286,7 +286,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                       width: _size / 1.5,
                                       height: _size / 20,
                                       child: FittedBox(
-                                        alignment: Alignment.centerLeft,
+                                        alignment: Alignment.center,
                                         fit: BoxFit.contain,
                                         child: Text(
                                           "Рабочие среды",
@@ -303,10 +303,9 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                       width: _size / 1.5,
                                       height: _size / 20,
                                       child: FittedBox(
-                                        alignment: Alignment.centerLeft,
+                                        alignment: Alignment.center,
                                         fit: BoxFit.contain,
-                                        child: Text("Автоматизация коммерции",
-                                            style: textstyle, textAlign: TextAlign.left),
+                                        child: Text("Автоматизация", style: textstyle, textAlign: TextAlign.left),
                                       ),
                                     ))),
                             Opacity(
@@ -317,7 +316,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                         width: _size / 1.5,
                                         height: _size / 20,
                                         child: FittedBox(
-                                            alignment: Alignment.centerLeft,
+                                            alignment: Alignment.center,
                                             fit: BoxFit.contain,
                                             child: Text("Мобильные решения",
                                                 style: textstyle, textAlign: TextAlign.left)))))
