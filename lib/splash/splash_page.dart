@@ -22,22 +22,23 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage>
-    with SingleTickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double>
 
       ///
-      _scale1,
-      _scale2,
+      _fadein,
+      _translate,
       _opacity,
-      _opacity1,
-      _opacity2,
-      _opacity3,
-      _opacity4,
+      _scale,
+      _scale2,
+      _scale3,
+      _scale4,
+      _translate3,
       _opacity5,
-      _rotate1,
-      _translate;
+      _fadein1,
+      _fadein2,
+      _fadein3;
 
   @override
   void didChangeDependencies() {
@@ -52,75 +53,106 @@ class _SplashPageState extends State<SplashPage>
       vsync: this,
       duration: const Duration(milliseconds: 5000),
     );
-    _opacity1 = Tween(begin: 0.0, end: 1.0).animate(
+
+    _fadein = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.1, 0.2, curve: Curves.easeOut),
+        curve: const Interval(0.0, 0.2, curve: Curves.easeOut),
       ),
     );
 
-    _opacity = TweenSequence([
-      TweenSequenceItem(
-          tween: Tween(begin: 1.0, end: 1.0)
-              .chain(CurveTween(curve: Curves.easeOut)),
-          weight: 95),
-      TweenSequenceItem(
-          //  tween: Tween(begin: 1.0, end: 0.0)
-          tween: Tween(begin: 1.0, end: 1.0)
-              .chain(CurveTween(curve: Curves.easeOut)),
-          weight: 5)
-    ]).animate((CurvedAnimation(
-        parent: _controller, curve: const Interval(0.0, 1.0))));
-
-    _opacity2 = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.6, 0.8, curve: Curves.easeOut),
-      ),
-    );
-    _opacity3 = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.2, 0.4, curve: Curves.easeOut),
-      ),
-    );
-    _opacity4 = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.4, 0.6, curve: Curves.easeOut),
-      ),
-    );
-    _opacity5 = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.3, 0.5, curve: Curves.easeOut),
-      ),
-    );
     _translate = Tween(begin: 50.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.4, 0.5, curve: Curves.easeInOut),
       ),
     );
-    _rotate1 = Tween(begin: 0.0, end: 8.0).animate(
+
+    _opacity = TweenSequence([
+      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.0).chain(CurveTween(curve: Curves.easeOut)), weight: 95),
+      TweenSequenceItem(
+          //  tween: Tween(begin: 1.0, end: 0.0)
+          tween: Tween(begin: 1.0, end: 1.0).chain(CurveTween(curve: Curves.easeOut)),
+          weight: 5)
+    ]).animate((CurvedAnimation(parent: _controller, curve: const Interval(0.0, 1.0))));
+
+    _scale = Tween(begin: 0.5, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.0, 0.8, curve: Curves.easeInOut),
-      ),
-    );
-    _scale1 = Tween(begin: 2.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.6, 0.8, curve: Curves.easeInOut),
-      ),
-    );
-    _scale2 = Tween(begin: 5.0, end: 3.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 0.3, curve: Curves.easeInOut),
+        curve: const Interval(0.1, 0.2, curve: Curves.easeInOut),
       ),
     );
 
+    _scale2 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.4, 0.6, curve: Curves.easeOut),
+      ),
+    );
+
+    _scale3 = TweenSequence([
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: Curves.linear)), weight: 20),
+      TweenSequenceItem(
+          //  tween: Tween(begin: 1.0, end: 0.0)
+          tween: Tween(begin: 1.0, end: -1.0).chain(CurveTween(curve: Curves.linear)),
+          weight: 20),
+      TweenSequenceItem(
+          //  tween: Tween(begin: 1.0, end: 0.0)
+          tween: Tween(begin: -1.0, end: 1.0).chain(CurveTween(curve: Curves.linear)),
+          weight: 20),
+    ]).animate((CurvedAnimation(parent: _controller, curve: const Interval(0.2, 0.5))));
+
+    _translate3 = TweenSequence([
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: Curves.bounceIn)), weight: 10),
+      TweenSequenceItem(
+          //  tween: Tween(begin: 1.0, end: 0.0)
+          tween: Tween(begin: 1.0, end: -1.0).chain(CurveTween(curve: Curves.bounceIn)),
+          weight: 10),
+      TweenSequenceItem(
+          //  tween: Tween(begin: 1.0, end: 0.0)
+          tween: Tween(begin: -1.0, end: 0.0).chain(CurveTween(curve: Curves.bounceInOut)),
+          weight: 10)
+    ]).animate((CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5))));
+
+    _scale4 = TweenSequence([
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: Curves.bounceOut)), weight: 10),
+      TweenSequenceItem(
+          //  tween: Tween(begin: 1.0, end: 0.0)
+          tween: Tween(begin: 1.0, end: 0.7).chain(CurveTween(curve: Curves.bounceOut)),
+          weight: 10),
+      TweenSequenceItem(
+          //  tween: Tween(begin: 1.0, end: 0.0)
+          tween: Tween(begin: 0.7, end: 1.0).chain(CurveTween(curve: Curves.bounceOut)),
+          weight: 10)
+    ]).animate((CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5))));
+
+    _opacity5 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.2, 0.4, curve: Curves.easeInOut),
+      ),
+    );
+
+    _fadein1 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.3, 0.35, curve: Curves.easeInOut),
+      ),
+    );
+
+    _fadein2 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.35, 0.4, curve: Curves.easeInOut),
+      ),
+    );
+
+    _fadein3 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.4, 0.45, curve: Curves.easeInOut),
+      ),
+    );
     _controller.forward();
     _controller.addListener(() {
       if (_controller.status == AnimationStatus.completed) {
@@ -139,10 +171,46 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     var controller = Get.find<DataController>();
+    double _size;
+    double getHeight = Get.height;
+    double getWidth = Get.width;
+    if (getWidth < getHeight) {
+      _size = getWidth - 60;
+    } else {
+      _size = getHeight - 60;
+    }
+    if (_size > 500) {
+      _size = 500;
+    }
+    print(_size);
+
+    BoxDecoration decorGreenGradient = const BoxDecoration(
+        gradient: LinearGradient(
+      stops: [0.0, 1.0],
+      colors: [Color.fromRGBO(129, 198, 56, 1), Color.fromRGBO(129, 198, 56, 0)],
+      begin: FractionalOffset.topCenter,
+      end: FractionalOffset.bottomCenter,
+    ));
+    BoxDecoration decorGreen =
+        BoxDecoration(color: const Color.fromRGBO(129, 198, 56, 0.3), borderRadius: BorderRadius.circular(3000));
+    BoxDecoration decor2 =
+        BoxDecoration(color: const Color.fromRGBO(129, 198, 56, 0.3), borderRadius: BorderRadius.circular(3000));
+    BoxDecoration decorYellow =
+        BoxDecoration(color: const Color.fromRGBO(254, 194, 8, 1), borderRadius: BorderRadius.circular(3000));
+    BoxDecoration decorDarkGradient = BoxDecoration(
+        gradient: const LinearGradient(
+          stops: [0.0, 0.7],
+          colors: [Color.fromRGBO(0, 0, 0, 0.5), Color.fromRGBO(129, 198, 56, 0)],
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+        ),
+        borderRadius: BorderRadius.circular(3000));
+    TextStyle textstyle = const TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
     return Scaffold(
       body: AnimatedBuilder(
-        animation: _translate,
+        animation: _fadein,
         builder: (ctx, ch) => Container(
+          decoration: const BoxDecoration(color: Color.fromRGBO(254, 194, 8, 1)),
           padding: const EdgeInsets.all(0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -152,44 +220,58 @@ class _SplashPageState extends State<SplashPage>
                   child: FadeTransition(
                     opacity: _opacity,
                     child: Transform.scale(
-                      scale: _scale2.value,
+                      scale: _scale.value,
                       child: Transform.translate(
-                        offset: const Offset(0, -10),
+                        offset: const Offset(0, 0),
                         child: Stack(
+                          alignment: Alignment.center,
                           children: [
-                            Transform.rotate(
-                                angle: _rotate1.value,
-                                child: FadeTransition(
-                                  opacity: _opacity1,
-                                  child: SvgPicture.asset(_images[0]),
-                                )),
-                            Transform.translate(
-                                offset: const Offset(13.5, 26),
-                                child: FadeTransition(
-                                  opacity: _opacity3,
-                                  child: SvgPicture.asset(_images[1]),
-                                )),
-                            Transform.translate(
-                                offset: const Offset(10, 10),
-                                child: FadeTransition(
-                                  opacity: _opacity4,
-                                  child: SvgPicture.asset(_images[2]),
-                                )),
-                            Transform.translate(
-                                offset: const Offset(37, 0),
-                                child: Transform.scale(
-                                  scale: _scale1.value,
-                                  child: FadeTransition(
-                                    opacity: _opacity2,
-                                    child: SvgPicture.asset(_images[3]),
-                                  ),
-                                )),
-                            Transform.translate(
-                                offset: Offset(0, 60 + _opacity5.value * 20),
-                                child: FadeTransition(
-                                  opacity: _opacity5,
-                                  child: SvgPicture.asset(_images[4]),
-                                ))
+                            Transform.scale(
+                              alignment: Alignment.center,
+                              scale: _scale4.value,
+                              child: Container(
+                                  padding: EdgeInsets.all(3),
+                                  decoration: decorDarkGradient,
+                                  child: Container(width: _size, height: _size, decoration: decorYellow)),
+                            ),
+                            Transform.scale(
+                                scaleX: _scale3.value,
+                                child: Container(width: _size / 1.4, height: _size / 1.4, decoration: decorGreen)),
+                            Transform.scale(
+                                alignment: Alignment.topCenter,
+                                scaleY: _scale2.value,
+                                child: Container(width: 230, height: Get.height, decoration: decorGreenGradient)),
+                            Transform.scale(
+                              scale: _opacity5.value,
+                              child: Opacity(
+                                opacity: _opacity5.value,
+                                child: Image.asset(
+                                  'lib/assets/images/logo.png',
+                                  width: 215,
+                                  height: 144,
+                                ),
+                              ),
+                            ),
+                            Opacity(
+                                opacity: _fadein1.value,
+                                child: Transform.translate(
+                                    offset: Offset(0, Get.height / 2 - 75 - _fadein1.value * 20),
+                                    child: Text(
+                                      "Рабочие среды",
+                                      style: textstyle,
+                                      textAlign: TextAlign.left,
+                                    ))),
+                            Opacity(
+                                opacity: _fadein2.value,
+                                child: Transform.translate(
+                                    offset: Offset(0, Get.height / 2 - 50 - _fadein2.value * 20),
+                                    child: Text("Автоматизации коммерческой деятельности",
+                                        style: textstyle, textAlign: TextAlign.left))),
+                            Opacity(
+                                opacity: _fadein3.value,
+                                child: Transform.translate(
+                                    offset: Offset(0, Get.height / 2 - 25 - _fadein3.value * 20),
+                                    child: Text("Мобильные решения", style: textstyle, textAlign: TextAlign.left)))
                           ],
                         ),
                       ),
@@ -200,8 +282,7 @@ class _SplashPageState extends State<SplashPage>
               controller.obx(
                 (state) => const SizedBox(),
                 onLoading: FadeIn(
-                  duration:
-                      Duration(milliseconds: ControlOptions.instance.fadeSpeed),
+                  duration: Duration(milliseconds: ControlOptions.instance.fadeSpeed),
                   curve: Curves.easeIn,
                   child: const Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
@@ -212,16 +293,14 @@ class _SplashPageState extends State<SplashPage>
                   ),
                 ),
                 onError: (s) => FadeIn(
-                  duration:
-                      Duration(milliseconds: ControlOptions.instance.fadeSpeed),
+                  duration: Duration(milliseconds: ControlOptions.instance.fadeSpeed),
                   curve: Curves.easeIn,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.error_outline,
-                            color: ControlOptions.instance.colorWarning),
+                        Icon(Icons.error_outline, color: ControlOptions.instance.colorWarning),
                         const Padding(
                           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                           child: Text(
@@ -237,14 +316,6 @@ class _SplashPageState extends State<SplashPage>
             ],
           ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.play_arrow),
-        onPressed: () {
-          _controller.reset();
-          Get.toNamed(Routes.mainPage);
-        },
       ),
     );
   }
