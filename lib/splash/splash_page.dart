@@ -38,7 +38,8 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
       _opacity5,
       _fadein1,
       _fadein2,
-      _fadein3;
+      _fadein3,
+      _fadein4;
 
   @override
   void didChangeDependencies() {
@@ -103,10 +104,10 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     ]).animate((CurvedAnimation(parent: _controller, curve: const Interval(0.2, 0.5))));
 
     _translate3 = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: Curves.bounceIn)), weight: 10),
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: Curves.linear)), weight: 10),
       TweenSequenceItem(
           //  tween: Tween(begin: 1.0, end: 0.0)
-          tween: Tween(begin: 1.0, end: -1.0).chain(CurveTween(curve: Curves.bounceIn)),
+          tween: Tween(begin: 1.0, end: -1.0).chain(CurveTween(curve: Curves.linear)),
           weight: 10),
       TweenSequenceItem(
           //  tween: Tween(begin: 1.0, end: 0.0)
@@ -115,10 +116,10 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     ]).animate((CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5))));
 
     _scale4 = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: Curves.bounceOut)), weight: 10),
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: Curves.linear)), weight: 10),
       TweenSequenceItem(
           //  tween: Tween(begin: 1.0, end: 0.0)
-          tween: Tween(begin: 1.0, end: 0.7).chain(CurveTween(curve: Curves.bounceOut)),
+          tween: Tween(begin: 1.0, end: 0.7).chain(CurveTween(curve: Curves.linear)),
           weight: 10),
       TweenSequenceItem(
           //  tween: Tween(begin: 1.0, end: 0.0)
@@ -153,6 +154,14 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
         curve: const Interval(0.4, 0.45, curve: Curves.easeInOut),
       ),
     );
+
+    _fadein4 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.25, 0.3, curve: Curves.easeInOut),
+      ),
+    );
+
     _controller.forward();
     _controller.addListener(() {
       if (_controller.status == AnimationStatus.completed) {
@@ -205,7 +214,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
           end: FractionalOffset.bottomCenter,
         ),
         borderRadius: BorderRadius.circular(3000));
-    TextStyle textstyle = const TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
+    TextStyle textstyle = const TextStyle(fontSize: 12, fontWeight: FontWeight.bold);
     return Scaffold(
       body: AnimatedBuilder(
         animation: _fadein,
@@ -255,23 +264,63 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             Opacity(
                                 opacity: _fadein1.value,
                                 child: Transform.translate(
+                                    offset: Offset((230 - _size) / 2, Get.height / 2 - 110 - _fadein4.value * 20),
+                                    child: Container(
+                                        width: _size,
+                                        height: 10,
+                                        decoration: const BoxDecoration(color: Color.fromRGBO(129, 198, 56, 1))))),
+                            Opacity(
+                                opacity: _fadein1.value,
+                                child: Transform.translate(
+                                    offset:
+                                        Offset((230 / 2 + _size / 3 / 2), Get.height / 2 - 100 - _fadein4.value * 20),
+                                    child: Container(
+                                        width: _size / 3,
+                                        height: 10,
+                                        decoration: const BoxDecoration(color: Color.fromRGBO(154, 197, 48, 1))))),
+                            Opacity(
+                                opacity: _fadein1.value,
+                                child: Transform.translate(
                                     offset: Offset(0, Get.height / 2 - 75 - _fadein1.value * 20),
-                                    child: Text(
-                                      "Рабочие среды",
-                                      style: textstyle,
-                                      textAlign: TextAlign.left,
+                                    child: SizedBox(
+                                      width: _size / 1.5,
+                                      height: _size / 20,
+                                      child: FittedBox(
+                                        alignment: Alignment.centerLeft,
+                                        fit: BoxFit.contain,
+                                        child: Text(
+                                          "Рабочие среды",
+                                          style: textstyle,
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
                                     ))),
                             Opacity(
                                 opacity: _fadein2.value,
                                 child: Transform.translate(
                                     offset: Offset(0, Get.height / 2 - 50 - _fadein2.value * 20),
-                                    child: Text("Автоматизации коммерческой деятельности",
-                                        style: textstyle, textAlign: TextAlign.left))),
+                                    child: SizedBox(
+                                      width: _size / 1.5,
+                                      height: _size / 20,
+                                      child: FittedBox(
+                                        alignment: Alignment.centerLeft,
+                                        fit: BoxFit.contain,
+                                        child: Text("Автоматизация коммерции",
+                                            style: textstyle, textAlign: TextAlign.left),
+                                      ),
+                                    ))),
                             Opacity(
                                 opacity: _fadein3.value,
                                 child: Transform.translate(
                                     offset: Offset(0, Get.height / 2 - 25 - _fadein3.value * 20),
-                                    child: Text("Мобильные решения", style: textstyle, textAlign: TextAlign.left)))
+                                    child: SizedBox(
+                                        width: _size / 1.5,
+                                        height: _size / 20,
+                                        child: FittedBox(
+                                            alignment: Alignment.centerLeft,
+                                            fit: BoxFit.contain,
+                                            child: Text("Мобильные решения",
+                                                style: textstyle, textAlign: TextAlign.left)))))
                           ],
                         ),
                       ),
