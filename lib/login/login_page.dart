@@ -6,7 +6,8 @@ import 'package:nsg_data/nsg_data.dart';
 import 'login_params.dart';
 
 class LoginPage extends NsgPhoneLoginPage {
-  LoginPage(NsgDataProvider provider) : super(provider, widgetParams: LoginPage.getWidgetParams());
+  LoginPage(NsgDataProvider provider)
+      : super(provider, widgetParams: LoginPage.getWidgetParams());
 
   @override
   Widget getLogo() {
@@ -25,10 +26,18 @@ class LoginPage extends NsgPhoneLoginPage {
               child: Stack(
                 children: [
                   SvgPicture.asset(images[0]),
-                  Transform.translate(offset: const Offset(13.5, 26), child: SvgPicture.asset(images[1])),
-                  Transform.translate(offset: const Offset(10, 10), child: SvgPicture.asset(images[2])),
-                  Transform.translate(offset: const Offset(37, 0), child: SvgPicture.asset(images[3])),
-                  Transform.translate(offset: const Offset(0, 80), child: SvgPicture.asset(images[4]))
+                  Transform.translate(
+                      offset: const Offset(13.5, 26),
+                      child: SvgPicture.asset(images[1])),
+                  Transform.translate(
+                      offset: const Offset(10, 10),
+                      child: SvgPicture.asset(images[2])),
+                  Transform.translate(
+                      offset: const Offset(37, 0),
+                      child: SvgPicture.asset(images[3])),
+                  Transform.translate(
+                      offset: const Offset(0, 80),
+                      child: SvgPicture.asset(images[4]))
                 ],
               ),
             )));
@@ -37,7 +46,7 @@ class LoginPage extends NsgPhoneLoginPage {
   }
 
   @override
-  Widget getBackground() {
+  Image getBackground() {
     var background = const Image(
       image: AssetImage('/assets/images/titan-back.png'),
     );

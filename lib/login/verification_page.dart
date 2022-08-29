@@ -47,7 +47,7 @@ class VerificationPage extends NsgPhoneLoginVerificationPage {
   }
 
   @override
-  Widget getBackground() {
+  Image getBackground() {
     var background = const Image(
       image: AssetImage('lib/assets/titan-back.png'),
     );
