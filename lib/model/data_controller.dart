@@ -41,8 +41,10 @@ class DataController extends DataControllerGenerated {
     _gotoMainPage();
   }
 
+  bool gotoDone = false;
   void _gotoMainPage() {
-    if (_animationFinished && status.isSuccess) {
+    if (_animationFinished && status.isSuccess && !gotoDone) {
+      gotoDone = true;
       Get.offAndToNamed(Routes.mainPage);
     }
   }
