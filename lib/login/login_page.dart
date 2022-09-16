@@ -6,7 +6,7 @@ import 'package:nsg_data/nsg_data.dart';
 import 'login_params.dart';
 
 class LoginPage extends NsgPhoneLoginPage {
-  LoginPage(NsgDataProvider provider)
+  LoginPage(NsgDataProvider provider, {super.key})
       : super(provider, widgetParams: LoginPage.getWidgetParams());
 
   @override

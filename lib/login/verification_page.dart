@@ -7,7 +7,7 @@ import 'package:nsg_data/nsg_data.dart';
 import 'login_page.dart';
 
 class VerificationPage extends NsgPhoneLoginVerificationPage {
-  VerificationPage(NsgDataProvider provider)
+  VerificationPage(NsgDataProvider provider, {super.key})
       : super(provider, widgetParams: LoginPage.getWidgetParams());
 
   @override
