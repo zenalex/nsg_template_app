@@ -5,7 +5,10 @@ class DataControllerGenerated extends NsgBaseController {
   NsgDataProvider? provider;
   @override
   Future onInit() async {
-    provider ??= NsgDataProvider(applicationName: 'tech_control', firebaseToken: '');
+    provider ??= NsgDataProvider(
+        applicationName: 'tech_control',
+        firebaseToken: '',
+        applicationVersion: '');
     provider!.serverUri = 'http://alex.nsgsoft.ru:5073';
 
     provider!.useNsgAuthorization = true;
