@@ -6,10 +6,10 @@ class DataControllerGenerated extends NsgBaseController {
   @override
   Future onInit() async {
     provider ??= NsgDataProvider(
-        applicationName: 'tech_control',
+        applicationName: 'application_name',
         firebaseToken: '',
         applicationVersion: '');
-    provider!.serverUri = 'http://alex.nsgsoft.ru:5073';
+    provider!.serverUri = 'http://server.path';
 
     provider!.useNsgAuthorization = true;
     await provider!.connect(this);
@@ -23,7 +23,7 @@ class DataControllerGenerated extends NsgBaseController {
   }
 
   Future loadData() async {
-    currentStatus = RxStatus.success();
+    currentStatus = GetStatus.success(NsgBaseController.emptyData);
     sendNotify();
   }
 }
