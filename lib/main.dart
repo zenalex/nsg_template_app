@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       textDirection: TextDirection.ltr,
       defaultTransition: Transition.rightToLeftWithFade,
-      title: 'Титан Контроль',
+      title: 'Шаблон приложения NSG',
       theme: ThemeData(
         primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
