@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:nsg_controls/nsg_button.dart';
 import 'package:nsg_data/nsg_data.dart';
 
@@ -11,34 +10,13 @@ class LoginPage extends NsgPhoneLoginPage {
 
   @override
   Widget getLogo() {
-    const List<String> images = <String>[
-      'lib/assets/images/sv1.svg',
-      'lib/assets/images/sv2.svg',
-      'lib/assets/images/sv3.svg',
-      'lib/assets/images/sv4.svg',
-      'lib/assets/images/logo.svg'
-    ];
     var logo = Center(
         child: Transform.translate(
             offset: const Offset(0, -50),
             child: Transform.scale(
               scale: 2,
               child: Stack(
-                children: [
-                  SvgPicture.asset(images[0]),
-                  Transform.translate(
-                      offset: const Offset(13.5, 26),
-                      child: SvgPicture.asset(images[1])),
-                  Transform.translate(
-                      offset: const Offset(10, 10),
-                      child: SvgPicture.asset(images[2])),
-                  Transform.translate(
-                      offset: const Offset(37, 0),
-                      child: SvgPicture.asset(images[3])),
-                  Transform.translate(
-                      offset: const Offset(0, 80),
-                      child: SvgPicture.asset(images[4]))
-                ],
+                children: [Image.asset('lib/assets/images/logo.png')],
               ),
             )));
 
@@ -48,7 +26,8 @@ class LoginPage extends NsgPhoneLoginPage {
   @override
   Image getBackground() {
     var background = const Image(
-      image: AssetImage('/assets/images/titan-back.png'),
+      image: AssetImage('lib/assets/images/background.jpg'),
+      fit: BoxFit.fill,
     );
     return background;
   }

@@ -11,9 +11,10 @@ class DataControllerGenerated extends NsgBaseController {
         applicationVersion: '');
     provider!.serverUri = 'http://server.path';
 
-    provider!.useNsgAuthorization = true;
+    provider!.useNsgAuthorization = false;
+    provider!.loginRequired = false;
     await provider!.connect(this);
-    if (provider!.isAnonymous) {
+    if (provider!.isAnonymous && provider!.loginRequired) {
       await Get.to(provider!.loginPage)?.then((value) => loadData());
     } else {
       await loadData();

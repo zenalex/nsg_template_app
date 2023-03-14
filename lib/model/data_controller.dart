@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:nsg_data/nsg_data.dart';
 
 import '../app_pages.dart';
-import '../login/login_page.dart';
-import '../login/verification_page.dart';
+import '../../../login/login_page.dart';
+import '../../../login/verification_page.dart';
 import 'generated/data_controller.g.dart';
 
 class DataController extends DataControllerGenerated {
@@ -18,9 +18,8 @@ class DataController extends DataControllerGenerated {
   @override
   Future onInit() async {
     if (provider == null) {
-      //TODO: enter application server identifier
       provider = NsgDataProvider(
-          applicationName: 'app_name',
+          applicationName: 'cognitive_trainings',
           firebaseToken: '',
           applicationVersion: '');
       //firebaseToken: nsgFirebase == null ? '' : nsgFirebase!.firebasetoken);
@@ -28,12 +27,14 @@ class DataController extends DataControllerGenerated {
       provider!.getVerificationWidget =
           (provider) => VerificationPage(provider);
     }
+    provider!.useNsgAuthorization = false;
     await super.onInit();
   }
 
   @override
-  Future loadData() async {
-    await super.loadData();
+  Future loadProviderData() async {
+    await super.loadProviderData();
+    status = GetStatus.success(NsgBaseController.emptyData);
     _gotoMainPage();
   }
 

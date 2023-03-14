@@ -49,7 +49,7 @@ class VerificationPage extends NsgPhoneLoginVerificationPage {
   @override
   Image getBackground() {
     var background = const Image(
-      image: AssetImage('lib/assets/titan-back.png'),
+      image: AssetImage('lib/assets/images/background.jpg'),
     );
     return background;
   }
