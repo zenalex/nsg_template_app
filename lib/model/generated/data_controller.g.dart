@@ -8,17 +8,17 @@ class DataControllerGenerated extends NsgBaseController {
     provider ??= NsgDataProvider(
         applicationName: 'application_name',
         firebaseToken: '',
-        applicationVersion: '');
+        applicationVersion: '',
+        availableServers: NsgServerParams(
+            {'https://localhost': 'main', 'https://localhost:5001': 'test'},
+            'https://localhost'));
     provider!.serverUri = 'http://server.path';
 
     provider!.useNsgAuthorization = false;
     provider!.loginRequired = false;
+    var db = NsgLocalDb.instance;
+    await db.init('nsg_template');
     await provider!.connect(this);
-    if (provider!.isAnonymous && provider!.loginRequired) {
-      await Get.to(provider!.loginPage)?.then((value) => loadData());
-    } else {
-      await loadData();
-    }
 
     super.onInit();
   }

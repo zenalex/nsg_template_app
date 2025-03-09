@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 import 'package:nsg_data/nsg_data.dart';
+import 'package:nsg_template_app/login/login_params.dart';
 
 import '../app_pages.dart';
-import '../../../login/login_page.dart';
-import '../../../login/verification_page.dart';
 import 'generated/data_controller.g.dart';
 
 class DataController extends DataControllerGenerated {
@@ -17,17 +16,20 @@ class DataController extends DataControllerGenerated {
 
   @override
   Future onInit() async {
-    if (provider == null) {
-      provider = NsgDataProvider(
-          applicationName: 'cognitive_trainings',
-          firebaseToken: '',
-          applicationVersion: '');
-      //firebaseToken: nsgFirebase == null ? '' : nsgFirebase!.firebasetoken);
-      provider!.getLoginWidget = (provider) => LoginPage(provider);
-      provider!.getVerificationWidget =
-          (provider) => VerificationPage(provider);
-    }
-    provider!.useNsgAuthorization = false;
+    provider ??= NsgDataProvider(
+      applicationName: 'cognitive_trainings',
+      firebaseToken: '',
+      applicationVersion: '',
+
+      widgetLoginParams: () => LoginParams(),
+      availableServers: NsgServerParams(
+          {'https://localhost': 'main', 'https://localhost:5001': 'test'},
+          'https://localhost'),
+      // eventOpenLoginPage: openLoginPage,
+      // languageCode: FutbolistaApp.defaultLocale.languageCode,
+      // availableServers: NsgServerOptions.availableServers
+    );
+    //firebaseToken: nsgFirebase == null ? '' : nsgFirebase!.firebasetoken);
     await super.onInit();
   }
 

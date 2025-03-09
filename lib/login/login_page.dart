@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nsg_controls/nsg_button.dart';
-import 'package:nsg_data/nsg_data.dart';
+import 'package:nsg_data/authorize/nsg_login_params.dart';
+import 'package:nsg_login/pages/nsg_login_page.dart';
 
 import 'login_params.dart';
 
-class LoginPage extends NsgPhoneLoginPage {
-  LoginPage(NsgDataProvider provider, {super.key})
-      : super(provider, widgetParams: LoginPage.getWidgetParams());
+class LoginPage extends NsgLoginPage {
+  LoginPage(super.provider, {super.key})
+      : super(widgetParams: LoginPage.getWidgetParams);
 
   @override
   Widget getLogo() {
@@ -33,21 +33,11 @@ class LoginPage extends NsgPhoneLoginPage {
   }
 
   @override
-  Widget getButtons() {
-    return NsgButton(
-      onPressed: () {
-        sendData();
-      },
-      text: 'Получить СМС'.toUpperCase(),
-    );
-  }
-
-  @override
   AppBar getAppBar(BuildContext context) {
     return AppBar(title: Text('Регистрация'.toUpperCase()), centerTitle: true);
   }
 
-  static NsgPhoneLoginParams getWidgetParams() {
+  static NsgLoginParams getWidgetParams() {
     return LoginParams();
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nsg_data/nsg_data.dart';
+import 'package:nsg_data/authorize/nsg_login_params.dart';
 
-class LoginParams extends NsgPhoneLoginParams {
+class LoginParams extends NsgLoginParams {
   LoginParams()
       : super(
             cardColor: Colors.grey[100],
