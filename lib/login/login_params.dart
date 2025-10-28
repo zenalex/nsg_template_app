@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nsg_data/authorize/nsg_login_params.dart';
+import 'package:nsg_controls/nsg_login_params.dart';
 
 class LoginParams extends NsgLoginParams {
   LoginParams()

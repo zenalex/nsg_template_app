@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:nsg_data/nsg_data.dart';
-import 'package:nsg_template_app/login/login_params.dart';
 
 import '../app_pages.dart';
 import 'generated/data_controller.g.dart';
@@ -20,8 +19,6 @@ class DataController extends DataControllerGenerated {
       applicationName: 'cognitive_trainings',
       firebaseToken: '',
       applicationVersion: '',
-
-      widgetLoginParams: () => LoginParams(),
       availableServers: NsgServerParams(
           {'https://localhost': 'main', 'https://localhost:5001': 'test'},
           'https://localhost'),
