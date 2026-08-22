@@ -6,6 +6,7 @@ class NsgServerOptions {
   static String get serverUriDataController => availableServers.currentServer;
 
   static NsgServerParams availableServers = NsgServerParams({
-    'http://server.path': 'main',
-  }, 'http://server.path');
+    'https://localhost': 'main',
+    'https://localhost:5001': 'test',
+  }, 'https://localhost');
 }

@@ -16,15 +16,15 @@ class DataControllerGenerated extends NsgBaseController {
 
     provider!.useNsgAuthorization = false;
     provider!.loginRequired = false;
+    var db = NsgLocalDb.instance;
+    await db.init('nsg_template');
     await provider!.connect(this);
     if (provider!.isAnonymous && provider!.loginRequired) {
       // Страницу логина показывает приложение через eventOpenLoginPage —
       // провайдер данных виджетов больше не знает.
       await provider!.openLoginPage();
-      await loadData();
-    } else {
-      await loadData();
     }
+    await loadData();
 
     super.onInit();
   }

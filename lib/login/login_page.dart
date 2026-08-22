@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nsg_data/nsg_data.dart';
 import 'package:nsg_login/nsg_login.dart';
 
 import 'login_params.dart';
@@ -7,8 +6,8 @@ import 'login_params.dart';
 /// Страница входа. Ввод телефона и подтверждение кода — один экран
 /// NsgLoginPage: отдельной страницы верификации в nsg_login больше нет.
 class LoginPage extends NsgLoginPage {
-  LoginPage(NsgDataProvider provider, {super.key})
-      : super(provider, widgetParams: LoginPage.getWidgetParams);
+  LoginPage(super.provider, {super.key})
+      : super(widgetParams: LoginPage.getWidgetParams);
 
   @override
   Widget getLogo() {

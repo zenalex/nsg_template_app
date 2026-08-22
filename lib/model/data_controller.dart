@@ -16,17 +16,15 @@ class DataController extends DataControllerGenerated {
 
   @override
   Future onInit() async {
-    if (provider == null) {
-      provider = NsgDataProvider(
-        applicationName: 'cognitive_trainings',
-        firebaseToken: '',
-        applicationVersion: '',
-        availableServers: NsgServerOptions.availableServers,
-        // Провайдер больше не хранит виджеты логина — он лишь просит их показать.
-        eventOpenLoginPage: () async => await NsgNavigator.push(Routes.loginPage),
-      );
-      //firebaseToken: nsgFirebase == null ? '' : nsgFirebase!.firebasetoken);
-    }
+    provider ??= NsgDataProvider(
+      applicationName: 'cognitive_trainings',
+      firebaseToken: '',
+      applicationVersion: '',
+      availableServers: NsgServerOptions.availableServers,
+      // Провайдер больше не хранит виджеты логина — он лишь просит их показать.
+      eventOpenLoginPage: () async => await NsgNavigator.push(Routes.loginPage),
+    );
+    //firebaseToken: nsgFirebase == null ? '' : nsgFirebase!.firebasetoken);
     provider!.useNsgAuthorization = false;
     await super.onInit();
   }
