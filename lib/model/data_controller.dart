@@ -2,9 +2,8 @@ import 'package:get/get.dart';
 import 'package:nsg_data/nsg_data.dart';
 
 import '../app_pages.dart';
-import '../../../login/login_page.dart';
-import '../../../login/verification_page.dart';
 import 'generated/data_controller.g.dart';
+import 'options/server_options.dart';
 
 class DataController extends DataControllerGenerated {
   //NsgPushNotificationService? nsgFirebase;
@@ -19,13 +18,14 @@ class DataController extends DataControllerGenerated {
   Future onInit() async {
     if (provider == null) {
       provider = NsgDataProvider(
-          applicationName: 'cognitive_trainings',
-          firebaseToken: '',
-          applicationVersion: '');
+        applicationName: 'cognitive_trainings',
+        firebaseToken: '',
+        applicationVersion: '',
+        availableServers: NsgServerOptions.availableServers,
+        // Провайдер больше не хранит виджеты логина — он лишь просит их показать.
+        eventOpenLoginPage: () async => await NsgNavigator.push(Routes.loginPage),
+      );
       //firebaseToken: nsgFirebase == null ? '' : nsgFirebase!.firebasetoken);
-      provider!.getLoginWidget = (provider) => LoginPage(provider);
-      provider!.getVerificationWidget =
-          (provider) => VerificationPage(provider);
     }
     provider!.useNsgAuthorization = false;
     await super.onInit();
