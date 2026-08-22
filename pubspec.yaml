@@ -19,14 +19,30 @@ dependencies:
   nsg_controls:
     path: 
       ../nsg_controls
+  nsg_login:
+    path: 
+      ../nsg_login
 
-  intl: ^0.18.0
+  intl: ^0.20.2
   flutter_svg: ^2.0.1
   simple_shadow: ^0.3.0
-  flutter_slidable: ^3.0.0
-  slidable_button: ^1.3.1
+  flutter_slidable: ^4.0.0
+  slidable_button: ^3.0.0+1
   flutter_fadein: ^2.0.0
-  jiffy: ^5.0.0
+  # ^6: требование nsg_controls; сам шаблон API Jiffy не использует.
+  jiffy: ^6.0.0
+
+# Пакеты nsg_* объявляют зависимости друг на друга как git (так собирается CI),
+# а приложение подключает их по path. Для pub это разные источники, и без
+# переопределения версия не разрешается вовсе. Сводим весь стек к локальным
+# путям — так же, как в titan_lk_app.
+dependency_overrides:
+  nsg_data:
+    path: ../nsg_data
+  nsg_controls:
+    path: ../nsg_controls
+  nsg_login:
+    path: ../nsg_login
 
 dev_dependencies:
   flutter_test:
